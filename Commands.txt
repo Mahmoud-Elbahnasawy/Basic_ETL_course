@@ -1,0 +1,2 @@
+git clone -b session_one https://github.com/Mahmoud-Elbahnasawy/Basic_ETL_course.git
+python -m venv venv
