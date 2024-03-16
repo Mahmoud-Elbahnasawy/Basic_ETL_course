@@ -2,19 +2,14 @@ import pyodbc
 import sqlalchemy
 from dotenv import load_dotenv
 import os
+# use the environment variables
 load_dotenv()
-# username = os.getenv("user_name")
-# password = os.getenv("password")
 
-# Use the variables in your program
-# print("Username:", username)
-# print("Password:", password)
 class PrepareDatabase:
     # you can change you the server,or database to the name in your machine.
-    def __init__(self,server = "DESKTOP-V1JN67L" , database = "Y_Etl_Course" , driver = '{SQL Server}' ,
+    def __init__(self,server = os.getenv("server") , database = "Y_Etl_Course" , driver = '{SQL Server}' ,
                  user = os.getenv("user_name") , pwd = os.getenv("password")   ):
         self.server = server
-        # database to be created
         self.database = database
         self.driver= driver
         self.user = user
@@ -43,6 +38,7 @@ class PrepareDatabase:
         except Exception as e:
             print(e)
             raise
+
     def search_database(self):
         """This method seaches for the database that we want to work with and calls the method needed to create this database if not existed."""
         # if the database does not exist we want to create it.
@@ -71,7 +67,7 @@ class PrepareDatabase:
         """This method connects to sql alchemy and returns an engine which is needed for pandas 
         to_sql method to insert the date from a dataframe to a database"""
         try:
-            engine = sqlalchemy.create_engine(f"mssql+pyodbc://{self.user}:{self.pwd}@{self.server}/{self.database}?driver=SQL+Server+Native+Client+11.0")
+            engine = sqlalchemy.create_engine(f"mssql+pyodbc://{self.user}:{self.pwd}@{self.server}/{self.database}?driver=ODBC+Driver+17+for+SQL+Server")
             return engine
         except Exception as e:
             print(e)
