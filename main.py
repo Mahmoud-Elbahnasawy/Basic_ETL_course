@@ -16,8 +16,5 @@ def main():
     Inserter(df=parser.pareser_response , engine=database.engine)
 
 if __name__ =="__main__":
-
     main()
-
-
 

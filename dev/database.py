@@ -31,9 +31,10 @@ class PrepareDatabase:
     def get_conn(self,database = 'master'):
         """This method connects to a desired database and returns the connection object from which we can create a cursor to execute sql."""
         try:
-            conn = pyodbc.connect(self.build_conn_string(database=database) , autocommit=True)
+            conn = pyodbc.connect(self.build_conn_string(database=database) , autocommit = True)
             # setting the connection attribute of this class to the recently created database.
             self.connection = conn
+            
             return conn
         except Exception as e:
             print(e)
@@ -47,7 +48,7 @@ class PrepareDatabase:
         cursor.execute(sql)
         # the number of the returned result set
         returned_row_counts = len(cursor.fetchall()) 
-        if returned_row_counts :
+        if returned_row_counts:
             print(f"THE DATABASE ({self.database}) EXISTS.")
         else:   
             # create the database with neccesary schemas.
