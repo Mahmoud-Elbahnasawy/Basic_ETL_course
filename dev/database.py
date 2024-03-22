@@ -2,6 +2,7 @@ import pyodbc
 import sqlalchemy
 from dotenv import load_dotenv
 import os
+
 # use the environment variables
 load_dotenv()
 
@@ -54,7 +55,7 @@ class PrepareDatabase:
             # create the database with neccesary schemas.
             self.create_database()
             self.create_neccessay_schemas()
-    
+
     def create_database(self):
         """This method creates a database"""
         create_database_statement = F"""CREATE DATABASE {self.database}"""
@@ -63,7 +64,7 @@ class PrepareDatabase:
         # connect to the recently created database.
         conn = self.get_conn(database= self.database)
         return conn
-    
+
     def get_sql_alchemy_conn(self):
         """This method connects to sql alchemy and returns an engine which is needed for pandas 
         to_sql method to insert the date from a dataframe to a database"""

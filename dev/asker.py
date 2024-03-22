@@ -5,6 +5,7 @@ class Asker():
         self.url = url
         # get the response
         self.json_response = self.ask()
+
     def ask(self):
         response = requests.get(self.url)
         # to check that the server responded properly

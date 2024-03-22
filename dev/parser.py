@@ -1,11 +1,13 @@
 import pandas as pd
 from uuid import uuid4
 
+
 class Parser:
     def __init__(self, response , uuid_from_prefect = str(uuid4())):
         self.response = response
         self.uuid_from_prefect = uuid_from_prefect
         self.paresed_response = self.parse()
+
     def parse(self):
         parsed_data = []
         # check datatype
